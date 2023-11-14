@@ -17,10 +17,8 @@
     }
 
     &__item {
-
-    }
-
-    &__link {
-
+        .active {
+            font-weight: 600;
+        }
     }
 }

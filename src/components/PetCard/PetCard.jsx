@@ -1,13 +1,14 @@
+import { useState } from 'react';
+import { Link } from 'react-router-dom';
+
+import styles from './PetCard.module.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faMars, faVenus, faHeart as fasHeart } from '@fortawesome/free-solid-svg-icons'
 import { faHeart } from '@fortawesome/free-regular-svg-icons'
+import { Button } from 'flowbite-react';
 
 import { USER_ROLES } from '../../constants';
-
-import styles from './PetCard.module.scss';
-
 import ErrorModal from '../ErrorModal';
-import { useState } from 'react';
 
 export default function PetCard({pet, userRole}) {
     // TO DO: ADD check if user has already added this pet to selections
@@ -18,7 +19,7 @@ export default function PetCard({pet, userRole}) {
         return (<></>);
     }
 
-    const { name, image, gender, type } = pet;
+    const { id, name, image, gender, type } = pet;
 
     const onAddToSelectionsClick = () => {
         if (userRole === USER_ROLES.guest) {
@@ -57,13 +58,17 @@ export default function PetCard({pet, userRole}) {
                                 <FontAwesomeIcon icon={fasHeart} size="lg" className={styles['card__heart']} /> : <FontAwesomeIcon icon={faHeart}  size="lg"  className={styles['card__heart']} />}
                     </button>
                     <div className='p-5 text-left'>
-                        <h2 className={styles['card__heading']}>
+                        <h3 className={styles['card__heading']}>
                             <span className='mr-2'>{name}</span>
                             {gender === 'male' && <FontAwesomeIcon icon={faMars} />}
                             {gender === 'female' && <FontAwesomeIcon icon={faVenus} />}
-                        </h2>
-                        <span>{type}</span>
-                        <button alt={`View more info about ${name}`}>View more</button>
+                        </h3>
+                        <span className='block mb-6'>{type}</span>
+
+                        {/* <button alt={`View more info about ${name}`}>View more</button> */}
+                        <Button size='md' alt={`View more info about ${name}`}>
+                            <Link to={`/pet/${id}`}>View details</Link>
+                        </Button>
                     </div>
                 </article>
             </li>
