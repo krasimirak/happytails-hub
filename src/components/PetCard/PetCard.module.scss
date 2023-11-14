@@ -31,6 +31,19 @@
                 transform: scale(1.15);
             }
         }
+
+        &--details {
+            border-radius: 0;
+            background-color: $white;
+            color: $primary-color;
+            padding: 10px 0;
+            font-weight: 600;
+
+            &:hover,
+            &:focus {
+                text-decoration: underline;
+            }
+        }
     }
 
     &__heart {

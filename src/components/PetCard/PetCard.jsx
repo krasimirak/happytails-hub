@@ -65,10 +65,12 @@ export default function PetCard({pet, userRole}) {
                         </h3>
                         <span className='block mb-6'>{type}</span>
 
-                        {/* <button alt={`View more info about ${name}`}>View more</button> */}
-                        <Button size='md' alt={`View more info about ${name}`}>
-                            <Link to={`/pet/${id}`}>View details</Link>
-                        </Button>
+                        <Link
+                            to={`/pet/${id}`}
+                            className={styles['card__button--details']}
+                            alt={`View more info about ${name}`}>
+                                View details
+                        </Link>
                     </div>
                 </article>
             </li>
