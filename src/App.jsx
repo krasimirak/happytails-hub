@@ -1,12 +1,8 @@
 import { useState } from 'react'
 
+import { USER_ROLES } from './constants';
 import PetsList from './components/PetsList';
 
-const USER_ROLES = {
-  admin: 'admin',
-  loggedIn: 'loggedIn',
-  guest: 'guest'
-};
 
 function App() {
   // eslint-disable-next-line no-unused-vars

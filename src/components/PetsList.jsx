@@ -5,7 +5,6 @@ import *  as petsApi from '../api/petsApi';
 
 import PetCard from "./PetCard";
 
-
 export default function PetsList({ userRole }) {
     const [pets, setPets] = useState([]);
 
