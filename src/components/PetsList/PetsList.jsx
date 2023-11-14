@@ -14,7 +14,7 @@ export default function PetsList({ userRole }) {
     }, []);
 
     return (
-        <ul className={styles['cards']}>
+        <ul className={`container mx-auto ${styles['cards']}`}>
             {pets.map(pet => (
                 <PetCard
                     key={pet.id}

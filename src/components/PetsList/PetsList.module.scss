@@ -1,6 +1,9 @@
+@import "../../styles/variables";
+
 .cards {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     column-gap: 30px;
     row-gap: 30px;
+    background-color: $light-blue;
 }
