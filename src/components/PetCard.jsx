@@ -43,7 +43,7 @@ export default function PetCard({pet, userRole}) {
         <>
             <li>
                 <article className={styles['card']}>
-                    <picture>
+                    <picture className={styles['cards__picture']}>
                         <img
                             className={styles['card__image']}
                             alt={name}

@@ -26,9 +26,6 @@ export default function ErrorModal(props) {
             {props.children}
           </div>
         </Modal.Body>
-        <Modal.Footer>
-          <Button onClick={onModalClose}>Close</Button>
-        </Modal.Footer>
       </Modal>
     </>
   );
