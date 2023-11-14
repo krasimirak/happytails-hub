@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import styles from './PetsList.module.scss';
 
-import *  as petsApi from '../api/petsApi';
+import *  as petsApi from '../../api/petsApi';
 
-import PetCard from "./PetCard";
+import PetCard from "../PetCard/PetCard";
 
 export default function PetsList({ userRole }) {
     const [pets, setPets] = useState([]);

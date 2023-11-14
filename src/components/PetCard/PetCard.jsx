@@ -2,11 +2,11 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faMars, faVenus, faHeart as fasHeart } from '@fortawesome/free-solid-svg-icons'
 import { faHeart } from '@fortawesome/free-regular-svg-icons'
 
-import { USER_ROLES } from '../constants';
+import { USER_ROLES } from '../../constants';
 
 import styles from './PetCard.module.scss';
 
-import ErrorModal from './ErrorModal';
+import ErrorModal from '../ErrorModal';
 import { useState } from 'react';
 
 export default function PetCard({pet, userRole}) {

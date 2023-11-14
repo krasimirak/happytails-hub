@@ -1,7 +1,8 @@
 import { useState } from 'react'
 
 import { USER_ROLES } from './constants';
-import PetsList from './components/PetsList';
+import PetsList from './components/PetsList/PetsList';
+import Header from './components/Header/Header';
 
 
 function App() {
@@ -10,6 +11,7 @@ function App() {
 
   return (
     <>
+      <Header userRole={userRole} />
       <PetsList userRole={userRole} />
     </>
   )

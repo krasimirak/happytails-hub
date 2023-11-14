@@ -1,0 +1,26 @@
+@import '../../styles/variables';
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+
+    &__title {
+        color: $primary-color;
+    }
+}
+
+.menu {
+    &__list {
+        display: flex;
+        gap: 20px;
+    }
+
+    &__item {
+
+    }
+
+    &__link {
+
+    }
+}
