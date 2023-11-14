@@ -6,7 +6,7 @@ import *  as petsApi from '../api/petsApi';
 import PetCard from "./PetCard";
 
 
-export default function PetsList(props) {
+export default function PetsList({ userRole }) {
     const [pets, setPets] = useState([]);
 
     useEffect(() => {
@@ -16,7 +16,12 @@ export default function PetsList(props) {
 
     return (
         <ul className={styles['cards']}>
-            {pets.map(pet => <PetCard key={pet.id} pet={pet} />)}
+            {pets.map(pet => (
+                <PetCard
+                    key={pet.id}
+                    pet={pet}
+                    userRole={userRole} />
+            ))}
         </ul>
     )
 }

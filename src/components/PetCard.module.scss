@@ -1,0 +1,21 @@
+.card {
+    background-color: lightblue;
+
+    &__picture {
+
+    }
+
+    &__image {
+        aspect-ratio: 1 / 1;
+        object-fit: cover;
+    }
+
+    &__heading {
+
+    }
+
+    &__gender {
+
+    }
+}
+

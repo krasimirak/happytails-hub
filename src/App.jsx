@@ -14,7 +14,7 @@ function App() {
 
   return (
     <>
-      <PetsList />
+      <PetsList userRole={userRole} />
     </>
   )
 }
