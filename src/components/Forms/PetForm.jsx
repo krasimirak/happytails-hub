@@ -19,19 +19,20 @@ export default function PetForm({pet}) {
         Object.fromEntries(Object.values(PET_DETAILS).map(field => [field.name, field.defaultValue]))
     ), []);
 
-    const [petData, setPetData] = useState(pet || stateFromTemplate);
+    const [data, setData] = useState(pet || stateFromTemplate);
 
     const onFieldChange = ({target}) => {
         const value = target.type === 'checkbox' ? target.checked : target.value;
 
-        setPetData({
-            ...petData,
+        setData(state => ({
+            ...state,
             [target.name]: value
-        });
+        }));
     }
 
     const onSubmit = (e) => {
         e.preventDefault();
+        data;
 
         if (pet) {
             // call update function
