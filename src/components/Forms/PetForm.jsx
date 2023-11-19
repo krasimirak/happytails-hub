@@ -54,6 +54,7 @@ export default function PetForm({pet}) {
                             key={key}
                             label={field.label}
                             name={field.name}
+                            value={data[field.name]}
                             changeHandler={onFieldChange} />
                     )
                 }
@@ -65,7 +66,7 @@ export default function PetForm({pet}) {
                             label={field.label}
                             name={field.name}
                             options={field.values}
-                            value={field.defaultValue}
+                            value={data[field.name]}
                             changeHandler={onFieldChange} />
                     )
                 }
