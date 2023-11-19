@@ -60,8 +60,8 @@ export default function PetCard({pet, userRole}) {
                     <div className='p-5 text-left'>
                         <h3 className={styles['card__heading']}>
                             <span className='mr-2'>{name}</span>
-                            {gender === 'male' && <FontAwesomeIcon icon={faMars} />}
-                            {gender === 'female' && <FontAwesomeIcon icon={faVenus} />}
+                            {gender.toLowerCase() === 'male' && <FontAwesomeIcon icon={faMars} />}
+                            {gender.toLowerCase() === 'female' && <FontAwesomeIcon icon={faVenus} />}
                         </h3>
                         <span className='block mb-6'>{type}</span>
 
