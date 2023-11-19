@@ -10,6 +10,7 @@ import Account from './pages/Account';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import PetDetailsPage from './pages/PetDetailsPage';
+import AddNew from './pages/AddNew';
 import PageNotFound from './pages/PageNotFound';
 
 
@@ -28,6 +29,7 @@ function App() {
         <Route path="/account" element={<Account />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
+        <Route path="/add-new" element={<AddNew />} />
         <Route path='/*' element={<PageNotFound />} />
       </Routes>
     </>
