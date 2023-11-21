@@ -9,7 +9,7 @@ export default function Header({userRole}) {
     const navLinkClass = ({isActive}) => isActive ? styles['active'] : '';
 
     return (
-        <header className={`container mx-auto py-6 mb-6 ${styles['header']}`}>
+        <header className={`container px-4 mx-auto py-6 mb-6 ${styles['header']}`}>
             <div>
                 <NavLink to='/'>
                     <FontAwesomeIcon icon={faPaw} style={{color: '#3AA1A6'}} size="3x" />
@@ -20,7 +20,7 @@ export default function Header({userRole}) {
             <nav className={styles['menu']}>
                 <ul className={styles['menu__list']}>
                     <li className={styles['menu__item']}>
-                        <NavLink to='/list' className={navLinkClass}>Open for adoption</NavLink>
+                        <NavLink to='/pets' className={navLinkClass}>Open for adoption</NavLink>
                     </li>
 
                     {userRole === USER_ROLES.guest && (
@@ -30,6 +30,13 @@ export default function Header({userRole}) {
                             </li>
                             <li className={styles['menu__item']}>
                                 <NavLink to='/register' className={navLinkClass}>Register</NavLink>
+                            </li>
+                        </>)}
+
+                    { userRole === USER_ROLES.admin && (
+                        <>
+                            <li className={styles['menu__item']}>
+                                <NavLink to='/add-new' className={navLinkClass}>Add new pet</NavLink>
                             </li>
                         </>)}
 

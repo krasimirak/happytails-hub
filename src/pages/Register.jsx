@@ -46,7 +46,7 @@ export default function Register() {
         if (isStrong && isMatching) {
             authApi.register(email, password)
                 .then(res => {
-                    navigate("/list");
+                    navigate("/pets");
                 })
                 .catch((error) => {
                     setRegisterError(true);
@@ -55,7 +55,7 @@ export default function Register() {
     }
 
     return (
-        <main className="container mx-auto">
+        <main className="container px-4 mx-auto">
             <h1 className="text-4xl font-extrabold my-8">Register</h1>
 
             {registerError && (

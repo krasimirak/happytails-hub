@@ -48,7 +48,7 @@ export default function PetForm({pet}) {
         }
         else {
             petsApi.create(data)
-                .then(id => navigate(`/pet/${id}`))
+                .then(id => navigate(`/pets/${id}`))
                 .catch(() => {
                     setError(true);
                     errorRef.current?.scrollIntoView({ behavior: 'smooth' });

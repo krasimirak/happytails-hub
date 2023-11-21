@@ -4,7 +4,7 @@ import { USER_ROLES } from "../constants";
 export default function PetsListPage() {
     return (
         <main className="bg-light-blue pt-8 pb-14">
-            <div className="container mx-auto flex flex-wrap">
+            <div className="container px-4 mx-auto flex flex-wrap">
                 <h1 className="basis-full">Open for adoption</h1>
 
                 <aside className="basis-full lg:basis-1/4">

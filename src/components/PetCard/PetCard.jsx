@@ -66,7 +66,7 @@ export default function PetCard({pet, userRole}) {
                         <span className='block mb-6'>{type}</span>
 
                         <Link
-                            to={`/pet/${id}`}
+                            to={`/pets/${id}`}
                             className={styles['card__button--details']}
                             alt={`View more info about ${name}`}>
                                 View details
