@@ -25,7 +25,7 @@ export const PET_DETAILS = {
         name: 'image',
         label: 'Image',
         defaultValue: '',
-        inputType: 'text'
+        inputType: 'url'
     },
     type: {
         name: 'type',

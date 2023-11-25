@@ -1,4 +1,4 @@
-import { useState, useMemo, useRef } from "react";
+import { useState, useMemo, useRef, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 import { PET_DETAILS } from "../../constants";
@@ -11,7 +11,7 @@ import { HiInformationCircle } from "react-icons/hi";
 
 
 import * as petsApi from '../../api/petsApi';
-
+import styles from './PetForm.module.scss';
 /**
  *
  * @param {Object} props - React component properties
@@ -30,6 +30,10 @@ export default function PetForm({pet}) {
 
     const navigate = useNavigate();
 
+    useEffect(() => {
+        if (pet) setData(pet);
+    }, [pet]);
+
     const onFieldChange = ({target}) => {
         const value = target.type === 'checkbox' ? target.checked : target.value;
 
@@ -41,10 +45,14 @@ export default function PetForm({pet}) {
 
     const onSubmit = (e) => {
         e.preventDefault();
-        // console.log(data);
 
         if (pet) {
-            // call update function
+            petsApi.update(pet.id, data)
+                .then(() => navigate(`/pets/${pet.id}`))
+                .catch(() => {
+                    setError(true);
+                    errorRef.current?.scrollIntoView({ behavior: 'smooth' });
+                })
         }
         else {
             petsApi.create(data)
@@ -64,18 +72,19 @@ export default function PetForm({pet}) {
                         <span className="font-medium">We ran into an issue trying to submit the data, please try again later.</span>
                     </Alert>
                 </div>)}
-            <form onSubmit={onSubmit}>
+            <form onSubmit={onSubmit} className={styles['form']}>
             {
                 Object.values(PET_DETAILS).map((field) => {
                     const key = 'field_' + field.name;
 
-                    if (field.inputType === 'text') {
+                    if (field.inputType === 'text' || field.inputType === 'url') {
                         return (
                             <TextField
                                 key={key}
                                 label={field.label}
                                 name={field.name}
                                 value={data[field.name]}
+                                type={field.inputType}
                                 changeHandler={onFieldChange} />
                         )
                     }
@@ -98,7 +107,9 @@ export default function PetForm({pet}) {
                                 key={key}
                                 label={field.label}
                                 name={field.name}
-                                changeHandler={onFieldChange} />
+                                value={data[field.name]}
+                                changeHandler={onFieldChange}
+                                className={styles['checkbox']} />
                         )
                     }
 

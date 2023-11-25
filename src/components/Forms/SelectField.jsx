@@ -1,8 +1,8 @@
 import { Label, Select } from 'flowbite-react';
 
-export default function SelectField({label, name, options, value, changeHandler}) {
+export default function SelectField({label, name, options, value, changeHandler, className}) {
    return (
-        <div className="form__select mb-5">
+        <div className={`mb-5 ${className || ''}`}>
             <div className="mb-2 block">
                 <Label htmlFor={name}>Select {label}</Label>
             </div>

@@ -1,8 +1,8 @@
 import { Label, TextInput } from 'flowbite-react';
 
-export default function TextField({label, name, value, changeHandler}) {
+export default function TextField({label, name, value, type, changeHandler, className}) {
     return (
-        <div className="mb-5">
+        <div className={`mb-5 ${className || ''}`}>
             <div className="mb-2 block">
                 <Label htmlFor={name}>{label}</Label>
             </div>
@@ -12,6 +12,7 @@ export default function TextField({label, name, value, changeHandler}) {
                 name={name}
                 value={value}
                 onChange={changeHandler}
+                type={type}
                 required
             />
         </div>
