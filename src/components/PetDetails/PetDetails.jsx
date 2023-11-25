@@ -1,5 +1,5 @@
 import { useEffect, useState, useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import { HiInformationCircle } from 'react-icons/hi';
 import { Alert, Button } from 'flowbite-react';
@@ -18,6 +18,7 @@ export default function PetDetails({id}) {
     const [details, setDetails] = useState({});
     const [error, setError] = useState(false);
     const userRole = useContext(UserContext);
+    const navigate = useNavigate();
 
     useEffect(() => {
         petsApi.getOne(id)
@@ -26,7 +27,12 @@ export default function PetDetails({id}) {
     }, [id]);
 
     const onDeleteButtonClick = () => {
-
+        // TO DO:
+        // 1. Confirmation modal
+        // 2. Error message handle (from catch)
+        petsApi.remove(id)
+        .then(() => { navigate('/pets') })
+        .catch(() => setError(true));
     }
 
     if (error) {

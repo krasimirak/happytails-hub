@@ -1,4 +1,4 @@
-import { collection, doc, addDoc, getDoc, getDocs, updateDoc, Timestamp } from "firebase/firestore";
+import { collection, doc, addDoc, getDoc, getDocs, updateDoc, deleteDoc, Timestamp } from "firebase/firestore";
 
 import { db } from './firebase';
 
@@ -78,5 +78,15 @@ export const update = async (id, data) => {
     }
     catch (error) {
         throw new Error(`An error occured while trying to update pet ${id}: ${error}`);
+    }
+}
+
+export const remove = async (id) => {
+    try {
+        const docRef = doc(db, "animals", id);
+        await deleteDoc(docRef);
+    }
+    catch (error) {
+        throw new Error(`An error occured while trying to delete pet ${id}: ${error}`);
     }
 }
