@@ -57,7 +57,7 @@ export default function PetCard({pet, userRole}) {
                             {isAdded ?
                                 <FontAwesomeIcon icon={fasHeart} size="lg" className={styles['card__heart']} /> : <FontAwesomeIcon icon={faHeart}  size="lg"  className={styles['card__heart']} />}
                     </button>
-                    <div className='p-5 text-left'>
+                    <div className={`p-5 text-left ${styles['card__content']}`}>
                         <h3 className={styles['card__heading']}>
                             <span className='mr-2'>{name}</span>
                             {gender.toLowerCase() === 'male' && <FontAwesomeIcon icon={faMars} />}
