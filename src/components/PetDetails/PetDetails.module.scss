@@ -1,0 +1,38 @@
+@import "../../styles/variables";
+
+@media (min-width: 768px) {
+    .details {
+        display: flex;
+        padding-top: 60px;
+
+        &__media {
+            flex-basis: 40%;
+        }
+
+        &__content {
+            flex-basis: 60%;
+            padding-left: 60px;
+        }
+
+        &__links {
+            display: flex;
+            justify-content: flex-end;
+            gap: 16px;
+        }
+
+        &__link {
+            background-color: $primary-color;
+
+            // background-color: $accent-color;
+            border-radius: 8px;
+            padding: .25rem .75rem;
+            font-size: 1.125rem;
+            letter-spacing: 1px;
+            transition: all .15s ease-in;
+
+            &:hover {
+                background-color: $primary-color;
+            }
+        }
+    }
+}

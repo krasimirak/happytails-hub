@@ -4,10 +4,15 @@ import { Link } from "react-router-dom";
 import { HiInformationCircle } from 'react-icons/hi';
 import { Alert, Button } from 'flowbite-react';
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faPenToSquare, faSquareMinus } from '@fortawesome/free-regular-svg-icons'
+
 import { UserContext } from "../../context/userContext";
 
 import * as petsApi from '../../api/petsApi';
 import { USER_ROLES } from "../../constants";
+
+import styles from './PetDetails.module.scss';
 
 export default function PetDetails({id}) {
     const [details, setDetails] = useState({});
@@ -35,15 +40,24 @@ export default function PetDetails({id}) {
     }
 
     return (
-        <div className="flex">
-            <picture className="w-1/2">
+        <div className={styles['details']}>
+            <picture className={styles['details__media']}>
                 <img src={details.image} alt={details.name} />
             </picture>
-            <div className="w-1/2 pl-7">
+            <div className={styles['details__content']}>
                 { userRole === USER_ROLES.admin && (
-                    <div>
-                        <Button as={Link} to="edit">Edit</Button>
-                        <Button onClick={onDeleteButtonClick}>Delete</Button>
+                    <div className={styles['details__links']}>
+                        <Button
+                            as={Link}
+                            to={`/pets/${id}/edit`}
+                            className={styles['details__link']}>
+                                <FontAwesomeIcon icon={faPenToSquare} />
+                                <span className="ml-3 text-lg">Edit</span>
+                        </Button>
+                        <Button onClick={onDeleteButtonClick} className={styles['details__link']}>
+                            <FontAwesomeIcon icon={faSquareMinus} />
+                            <span className="ml-3 text-lg">Delete</span>
+                        </Button>
                     </div>
                 )}
 
