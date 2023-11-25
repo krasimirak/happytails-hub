@@ -14,7 +14,9 @@ export default function PetDetailsPage() {
     const { id } = useParams();
     const [ petData, setPetData ] = useState({});
     const [ error, setError ] = useState(false);
+    // TO DO: ADD useLocation to get pet details
 
+    // TO REMOVE:
     useEffect(() => {
         petsApi.getOne(id)
         .then(setPetData)
@@ -26,12 +28,17 @@ export default function PetDetailsPage() {
         <main className="container px-4 mx-auto">
             { error &&
                 <Alert color="failure" icon={HiInformationCircle}>
-                    <h1 className="font-medium">Something went wrong!</h1>
+                    <h1>Something went wrong!</h1>
                     <p>The resource you are looking for wasn&apos;t found</p>
                     <Button as={Link} to={PATH.List}>Go back to pets list</Button>
                 </Alert> }
 
-            { !error && <PetForm pet={ {...petData, id} } /> }
+            { !error && (
+                <>
+                    <h1>Edit listing</h1>
+                    <PetForm pet={ {...petData, id} } />
+                </>
+            )  }
         </main>
     )
 }

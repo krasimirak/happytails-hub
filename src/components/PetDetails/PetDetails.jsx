@@ -53,6 +53,7 @@ export default function PetDetails({id}) {
             <div className={styles['details__content']}>
                 { userRole === USER_ROLES.admin && (
                     <div className={styles['details__links']}>
+                        {/* TO DO: Link with state={{ petDetails }}> */}
                         <Button
                             as={Link}
                             to={PATH.Edit.replace(':id', id)}
