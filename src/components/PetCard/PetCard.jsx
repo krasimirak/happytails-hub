@@ -1,19 +1,22 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 
-import styles from './PetCard.module.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faMars, faVenus, faHeart as fasHeart } from '@fortawesome/free-solid-svg-icons'
 import { faHeart } from '@fortawesome/free-regular-svg-icons'
 import { Button } from 'flowbite-react';
 
-import { USER_ROLES, PATH } from '../../constants';
+import { useAuth } from '../../context/authContext';
+import { PATH } from '../../constants';
 import ErrorModal from '../ErrorModal';
+import styles from './PetCard.module.scss';
 
-export default function PetCard({pet, userRole}) {
+
+export default function PetCard({pet}) {
     // TO DO: ADD check if user has already added this pet to selections
     const [isAdded, setIsAdded] = useState(false);
     const [error, setError] = useState({});
+    const { currentUser } = useAuth();
 
     if (!pet) {
         return (<></>);
@@ -22,7 +25,7 @@ export default function PetCard({pet, userRole}) {
     const { id, name, image, gender, type } = pet;
 
     const onAddToSelectionsClick = () => {
-        if (userRole === USER_ROLES.guest) {
+        if (!currentUser) {
             setError({
                 title: 'Operation not allowed',
                 message: 'Please login or register to use this functionality'
@@ -78,6 +81,11 @@ export default function PetCard({pet, userRole}) {
             {error.title && (
                 <ErrorModal closeHandler={onErrorDismiss} title={error.title}>
                     <p>{error.message}</p>
+
+                    <div className="flex flex-wrap gap-2">
+                        <Button as={Link} to={PATH.Login} size="lg">Login</Button>
+                        <Button as={Link} to={PATH.Register} size="lg">Register</Button>
+                    </div>
                 </ErrorModal>)}
         </>
     )

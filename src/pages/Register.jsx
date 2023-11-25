@@ -111,7 +111,7 @@ export default function Register() {
                     />
                 </div>
 
-                <Button type="submit">Submit</Button>
+                <Button type="submit" size="lg">Register</Button>
             </form>
         </main>
     )
