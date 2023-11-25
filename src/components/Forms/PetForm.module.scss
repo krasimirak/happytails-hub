@@ -8,5 +8,10 @@
     .checkbox {
         grid-column: 1 / -1;
     }
+
+    .button {
+        justify-self: start;
+        letter-spacing: 1px;
+    }
 }
 

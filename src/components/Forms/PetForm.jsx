@@ -116,7 +116,7 @@ export default function PetForm({pet}) {
                     return;
                 })
             }
-                <Button type="submit" className="my-8">Save</Button>
+                <Button type="submit" size="lg" className={`my-8 ${styles['button']}` }>Save</Button>
             </form>
         </>
     )

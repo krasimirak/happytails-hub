@@ -50,11 +50,15 @@ export default function PetDetails({id}) {
                         <Button
                             as={Link}
                             to={`/pets/${id}/edit`}
-                            className={styles['details__link']}>
+                            className={styles['details__link']}
+                            size="lg">
                                 <FontAwesomeIcon icon={faPenToSquare} />
                                 <span className="ml-3 text-lg">Edit</span>
                         </Button>
-                        <Button onClick={onDeleteButtonClick} className={styles['details__link']}>
+                        <Button
+                            onClick={onDeleteButtonClick}
+                            className={styles['details__link']}
+                            size="lg">
                             <FontAwesomeIcon icon={faSquareMinus} />
                             <span className="ml-3 text-lg">Delete</span>
                         </Button>
