@@ -9,7 +9,7 @@ import CheckboxField from "./CheckboxField";
 import { Alert, Button } from "flowbite-react";
 import { HiInformationCircle } from "react-icons/hi";
 
-
+import { PATH } from "../../constants";
 import * as petsApi from '../../api/petsApi';
 import styles from './PetForm.module.scss';
 /**
@@ -48,7 +48,7 @@ export default function PetForm({pet}) {
 
         if (pet) {
             petsApi.update(pet.id, data)
-                .then(() => navigate(`/pets/${pet.id}`))
+                .then(() => navigate(PATH.Details.replace(':id', pet.id)))
                 .catch(() => {
                     setError(true);
                     errorRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -56,7 +56,7 @@ export default function PetForm({pet}) {
         }
         else {
             petsApi.create(data)
-                .then(id => navigate(`/pets/${id}`))
+                .then(id => navigate(PATH.Details.replace(':id', id)))
                 .catch(() => {
                     setError(true);
                     errorRef.current?.scrollIntoView({ behavior: 'smooth' });

@@ -7,7 +7,7 @@ import { faMars, faVenus, faHeart as fasHeart } from '@fortawesome/free-solid-sv
 import { faHeart } from '@fortawesome/free-regular-svg-icons'
 import { Button } from 'flowbite-react';
 
-import { USER_ROLES } from '../../constants';
+import { USER_ROLES, PATH } from '../../constants';
 import ErrorModal from '../ErrorModal';
 
 export default function PetCard({pet, userRole}) {
@@ -66,7 +66,7 @@ export default function PetCard({pet, userRole}) {
                         <span className='block mb-6'>{type}</span>
 
                         <Link
-                            to={`/pets/${id}`}
+                            to={PATH.Details.replace(':id', id)}
                             className={styles['card__button--details']}
                             alt={`View more info about ${name}`}>
                                 View details

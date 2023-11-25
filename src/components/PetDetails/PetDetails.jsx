@@ -55,7 +55,7 @@ export default function PetDetails({id}) {
                     <div className={styles['details__links']}>
                         <Button
                             as={Link}
-                            to={`/pets/${id}/edit`}
+                            to={PATH.Edit.replace(':id', id)}
                             className={styles['details__link']}
                             size="lg">
                                 <FontAwesomeIcon icon={faPenToSquare} />
