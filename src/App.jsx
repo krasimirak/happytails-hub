@@ -11,6 +11,7 @@ import Account from './pages/Account';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import PetDetailsPage from './pages/PetDetailsPage';
+import PetEditPage from './pages/PetEditPage';
 import AddNew from './pages/AddNew';
 import PageNotFound from './pages/PageNotFound';
 
@@ -21,19 +22,19 @@ function App() {
 
   return (
     <UserContext.Provider value={USER_ROLES.admin}>
-      <Header userRole={userRole} />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/pets" element={<PetsListPage />} />
-        <Route path="/pets/:id" element={<PetDetailsPage />} />
-        <Route path="/pets/:id/edit" element={<PetDetailsPage />} />
-        <Route path="/selections" element={<Selections />} />
-        <Route path="/account" element={<Account />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register />} />
-        <Route path="/add-new" element={<AddNew />} />
-        <Route path='/*' element={<PageNotFound />} />
-      </Routes>
+        <Header userRole={userRole} />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/pets" element={<PetsListPage />} />
+          <Route path="/pets/:id" element={<PetDetailsPage />} />
+          <Route path="/pets/:id/edit" element={<PetEditPage />} />
+          <Route path="/selections" element={<Selections />} />
+          <Route path="/account" element={<Account />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/add-new" element={<AddNew />} />
+          <Route path='/*' element={<PageNotFound />} />
+        </Routes>
     </UserContext.Provider>
   )
 }
