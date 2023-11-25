@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { Routes, Route } from 'react-router-dom';
 
 import { UserContext } from './context/userContext';
-import { USER_ROLES } from './constants';
+import { USER_ROLES, PATH } from './constants';
 import Header from './components/Header/Header';
 import Home from './pages/Home';
 import PetsListPage from './pages/PetsListPage';
@@ -24,16 +24,17 @@ function App() {
     <UserContext.Provider value={USER_ROLES.admin}>
         <Header userRole={userRole} />
         <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/pets" element={<PetsListPage />} />
-          <Route path="/pets/:id" element={<PetDetailsPage />} />
-          <Route path="/pets/:id/edit" element={<PetEditPage />} />
-          <Route path="/selections" element={<Selections />} />
-          <Route path="/account" element={<Account />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} />
-          <Route path="/add-new" element={<AddNew />} />
-          <Route path='/*' element={<PageNotFound />} />
+          <Route path={PATH.Home} element={<Home />} />
+          <Route path={PATH.List} element={<PetsListPage />} />
+          <Route path={PATH.Details} element={<PetDetailsPage />} />
+          <Route path={PATH.Edit} element={<PetEditPage />} />
+          <Route path={PATH.Selections} element={<Selections />} />
+          <Route path={PATH.Account} element={<Account />} />
+          <Route path={PATH.Login} element={<Login />} />
+          <Route path={PATH.Register} element={<Register />} />
+          {/* TO DO: ADD Logout route */}
+          <Route path={PATH.Add} element={<AddNew />} />
+          <Route path={PATH.NotFound} element={<PageNotFound />} />
         </Routes>
     </UserContext.Provider>
   )

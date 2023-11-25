@@ -3,7 +3,7 @@ import { useState } from "react";
 import { Alert, Label, TextInput, Button } from 'flowbite-react';
 import { HiInformationCircle } from 'react-icons/hi';
 
-
+import { PATH } from "../constants";
 import * as authApi from '../api/auth';
 import { useNavigate } from "react-router-dom";
 
@@ -46,7 +46,7 @@ export default function Register() {
         if (isStrong && isMatching) {
             authApi.register(email, password)
                 .then(res => {
-                    navigate("/pets");
+                    navigate(PATH.List);
                 })
                 .catch((error) => {
                     setRegisterError(true);

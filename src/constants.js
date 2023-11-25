@@ -80,3 +80,17 @@ export const PET_DETAILS = {
         inputType: 'checkbox'
     }
 }
+
+export const PATH = {
+    Home: '/',
+    List: '/pets',
+    Details: '/pets/:id',
+    Edit: '/pets/:id/edit',
+    Selections: '/selections',
+    Account: '/account',
+    Login: '/login',
+    Register: '/register',
+    Logout: '/logout',
+    Add: '/add-new',
+    NotFound: '/*'
+}

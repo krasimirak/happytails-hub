@@ -10,7 +10,7 @@ import { faPenToSquare, faSquareMinus } from '@fortawesome/free-regular-svg-icon
 import { UserContext } from "../../context/userContext";
 
 import * as petsApi from '../../api/petsApi';
-import { USER_ROLES } from "../../constants";
+import { USER_ROLES, PATH } from "../../constants";
 
 import styles from './PetDetails.module.scss';
 
@@ -31,7 +31,7 @@ export default function PetDetails({id}) {
         // 1. Confirmation modal
         // 2. Error message handle (from catch)
         petsApi.remove(id)
-        .then(() => { navigate('/pets') })
+        .then(() => { navigate(PATH.List) })
         .catch(() => setError(true));
     }
 
@@ -40,7 +40,7 @@ export default function PetDetails({id}) {
             <Alert color="failure" icon={HiInformationCircle}>
                 <h1 className="font-medium">Something went wrong!</h1>
                 <p>The resource you are looking for wasn&apos;t found</p>
-                <Button as={Link} to="/pets">Go back to pets list</Button>
+                <Button as={Link} to={PATH.List}>Go back to pets list</Button>
             </Alert>
         )
     }
