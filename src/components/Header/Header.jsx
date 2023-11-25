@@ -5,7 +5,10 @@ import { faPaw } from '@fortawesome/free-solid-svg-icons'
 import styles from './Header.module.scss';
 import { USER_ROLES, PATH } from '../../constants';
 
+import { useAuth } from '../../context/authContext';
+
 export default function Header({userRole}) {
+    const { currentUser } = useAuth();
     const navLinkClass = ({isActive}) => isActive ? styles['active'] : '';
 
     return (
@@ -23,7 +26,7 @@ export default function Header({userRole}) {
                         <NavLink to={PATH.List} className={navLinkClass}>Open for adoption</NavLink>
                     </li>
 
-                    {userRole === USER_ROLES.guest && (
+                    {!currentUser && (
                         <>
                             <li className={styles['menu__item']}>
                                 <NavLink to={PATH.Login} className={navLinkClass}>Login</NavLink>
@@ -33,14 +36,15 @@ export default function Header({userRole}) {
                             </li>
                         </>)}
 
-                    { userRole === USER_ROLES.admin && (
-                        <>
-                            <li className={styles['menu__item']}>
-                                <NavLink to={PATH.Add} className={navLinkClass}>Add new pet</NavLink>
-                            </li>
-                        </>)}
+                    {/* TO DO: ADD ADMIN CHECK */}
+                    { currentUser && (
+                    <>
+                        <li className={styles['menu__item']}>
+                            <NavLink to={PATH.Add} className={navLinkClass}>Add new pet</NavLink>
+                        </li>
+                    </>) }
 
-                    {/* {[USER_ROLES.user, USER_ROLES.admin].includes(userRole) && ( */}
+                    { currentUser && (
                         <>
                             <li className={styles['menu__item']}>
                                 <NavLink to={PATH.Selections} className={navLinkClass}>My selections</NavLink>
@@ -51,8 +55,7 @@ export default function Header({userRole}) {
                             <li className={styles['menu__item']}>
                                 <NavLink to={PATH.Logout} className={navLinkClass}>Logout</NavLink>
                             </li>
-                        </>
-                    {/* )} */}
+                        </>)}
                 </ul>
             </nav>
         </header>

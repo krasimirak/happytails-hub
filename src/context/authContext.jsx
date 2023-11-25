@@ -23,6 +23,7 @@ export function AuthProvider({ children }) {
         login: authApi.login,
         logout: authApi.logout
     }
+
     return (
         <AuthContext.Provider value={value}>
             {children}
