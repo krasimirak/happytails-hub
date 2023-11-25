@@ -9,7 +9,7 @@ export default function Header({userRole}) {
     const navLinkClass = ({isActive}) => isActive ? styles['active'] : '';
 
     return (
-        <header className={`container px-4 mx-auto py-6 mb-6 ${styles['header']}`}>
+        <header className={`px-4 mx-auto py-6 mb-6 bg-white ${styles['header']}`}>
             <div>
                 <NavLink to='/'>
                     <FontAwesomeIcon icon={faPaw} style={{color: '#3AA1A6'}} size="3x" />
