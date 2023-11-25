@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { Routes, Route } from 'react-router-dom';
 
-import { UserContext } from './context/userContext';
+import { AuthProvider } from './context/authContext';
 import { USER_ROLES, PATH } from './constants';
 import Header from './components/Header/Header';
 import Home from './pages/Home';
@@ -14,14 +14,16 @@ import PetDetailsPage from './pages/PetDetailsPage';
 import PetEditPage from './pages/PetEditPage';
 import AddNew from './pages/AddNew';
 import PageNotFound from './pages/PageNotFound';
+import Logout from './pages/Logout';
 
 
 function App() {
   // eslint-disable-next-line no-unused-vars
-  const [userRole, setUserRole] = useState(USER_ROLES.admin);
+  const [userRole, setUserRole] = useState(USER_ROLES.guest);
+
 
   return (
-    <UserContext.Provider value={USER_ROLES.admin}>
+    <AuthProvider>
         <Header userRole={userRole} />
         <Routes>
           <Route path={PATH.Home} element={<Home />} />
@@ -32,11 +34,11 @@ function App() {
           <Route path={PATH.Account} element={<Account />} />
           <Route path={PATH.Login} element={<Login />} />
           <Route path={PATH.Register} element={<Register />} />
-          {/* TO DO: ADD Logout route */}
+          <Route path={PATH.Logout} element={<Logout />} />
           <Route path={PATH.Add} element={<AddNew />} />
           <Route path={PATH.NotFound} element={<PageNotFound />} />
         </Routes>
-    </UserContext.Provider>
+    </AuthProvider>
   )
 }
 

@@ -1,44 +1,18 @@
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from "firebase/auth"
+import app from './firebase';
 
-const auth = getAuth();
+export const auth = getAuth(app);
 
-export const register = async (email, password) => {
-    return createUserWithEmailAndPassword(auth, email, password)
-    .then((userCredential) => {
-      // Signed up
-      const user = userCredential.user;
-        console.log(userCredential);
-        return 'success';
-      // ...
-    })
-    .catch((error) => {
-      const errorCode = error.code;
-      const errorMessage = error.message;
-      console.log(error);
-      return 'error';
-      // ..
-    });
+export const register = (email, password) => {
+    return createUserWithEmailAndPassword(auth, email, password);
 }
 
-export const login = async (email, password) => {
-    signInWithEmailAndPassword(auth, email, password)
-        .then((userCredential) => {
-            // Signed in
-            const user = userCredential.user;
-            // ...
-        })
-        .catch((error) => {
-            const errorCode = error.code;
-            const errorMessage = error.message;
-        });
+export const login = (email, password) => {
+    return signInWithEmailAndPassword(auth, email, password);
 }
 
-export const logout = async () => {
-    signOut(auth).then(() => {
-        // Sign-out successful.
-      }).catch((error) => {
-        // An error happened.
-      });
+export const logout = () => {
+    return signOut(auth);
 }
 
 export const getCurrentUser = () => {

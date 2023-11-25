@@ -4,22 +4,24 @@ import { Alert, Label, TextInput, Button } from 'flowbite-react';
 import { HiInformationCircle } from 'react-icons/hi';
 
 import { PATH } from "../constants";
-import * as authApi from '../api/auth';
 import { useNavigate } from "react-router-dom";
+import { useAuth } from '../context/authContext';
 
 const passwordRegex =  /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@.#$!%*?&^])[A-Za-z\d@.#$!%*?&]{8,32}$/;
 
 
 export default function Register() {
-    const [email, setEmail] = useState('test');
+    const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [passwordRepeat, setPasswordRepeat] = useState('');
 
     const [passwordStrengthError, setPasswordStrengthError] = useState(false);
     const [passwordMismatchError, setPasswordMismatchError] = useState(false);
-    const [registerError, setRegisterError] = useState(false);
+    const [error, setError] = useState(false);
 
     const navigate = useNavigate();
+
+    const { register } = useAuth();
 
 
     const onEmailChange = (e) => {
@@ -44,12 +46,13 @@ export default function Register() {
         isMatching ? setPasswordMismatchError(false): setPasswordMismatchError(true);
 
         if (isStrong && isMatching) {
-            authApi.register(email, password)
-                .then(res => {
+            register(email, password)
+                .then(() => {
+                    setError(false);
                     navigate(PATH.List);
                 })
-                .catch((error) => {
-                    setRegisterError(true);
+                .catch(() => {
+                    setError(true);
                 })
         }
     }
@@ -58,7 +61,7 @@ export default function Register() {
         <main className="container px-4 mx-auto">
             <h1 className="text-4xl font-extrabold my-8">Register</h1>
 
-            {registerError && (
+            {error && (
                 <Alert color="failure" icon={HiInformationCircle}>
                   <span className="font-medium">Something went wrong!</span> You can&apos;t be registered with the provided data.
                 </Alert>

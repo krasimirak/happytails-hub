@@ -40,7 +40,7 @@ export default function Header({userRole}) {
                             </li>
                         </>)}
 
-                    {[USER_ROLES.user, USER_ROLES.admin].includes(userRole) && (
+                    {/* {[USER_ROLES.user, USER_ROLES.admin].includes(userRole) && ( */}
                         <>
                             <li className={styles['menu__item']}>
                                 <NavLink to={PATH.Selections} className={navLinkClass}>My selections</NavLink>
@@ -51,7 +51,8 @@ export default function Header({userRole}) {
                             <li className={styles['menu__item']}>
                                 <NavLink to={PATH.Logout} className={navLinkClass}>Logout</NavLink>
                             </li>
-                        </>)}
+                        </>
+                    {/* )} */}
                 </ul>
             </nav>
         </header>
