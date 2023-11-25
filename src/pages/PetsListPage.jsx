@@ -3,7 +3,8 @@ import { USER_ROLES } from "../constants";
 
 export default function PetsListPage() {
     return (
-        <main className="bg-light-blue pt-8 pb-14">
+        // bg-light-blue
+        <main className="bg-white pt-8 pb-14">
             <div className="container px-4 mx-auto flex flex-wrap">
                 <h1 className="basis-full">Open for adoption</h1>
 
