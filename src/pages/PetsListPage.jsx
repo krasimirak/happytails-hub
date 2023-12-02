@@ -15,8 +15,7 @@ export default function PetsListPage() {
                 <section className="basis-full lg:basis-3/4">
                     {/* <h2>Results</h2> */}
 
-                    {/* TO DO: Dynamic userRole */}
-                    <PetsList userRole={USER_ROLES.guest} />
+                    <PetsList />
                 </section>
 
                 <div>

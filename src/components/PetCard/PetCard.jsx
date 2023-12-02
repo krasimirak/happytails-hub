@@ -12,11 +12,11 @@ import ErrorModal from '../ErrorModal';
 import styles from './PetCard.module.scss';
 
 
-export default function PetCard({pet}) {
+export default function PetCard({ pet }) {
     // TO DO: ADD check if user has already added this pet to selections
     const [isAdded, setIsAdded] = useState(false);
     const [error, setError] = useState({});
-    const { currentUser } = useAuth();
+    const { user } = useAuth();
 
     if (!pet) {
         return (<></>);
@@ -25,7 +25,7 @@ export default function PetCard({pet}) {
     const { id, name, image, gender, type } = pet;
 
     const onAddToSelectionsClick = () => {
-        if (!currentUser) {
+        if (!user) {
             setError({
                 title: 'Operation not allowed',
                 message: 'Please login or register to use this functionality'
@@ -47,12 +47,15 @@ export default function PetCard({pet}) {
         <>
             <li>
                 <article className={styles['card']}>
-                    <picture className={styles['cards__picture']}>
+                    <div className={styles['card__image']} style={ { backgroundImage: `url(${image})` } }>
+
+                    </div>
+                    {/* <picture className={styles['card__picture']}>
                         <img
                             className={styles['card__image']}
                             alt={name}
                             src={image} />
-                    </picture>
+                    </picture> */}
                     <button
                         className={`${styles['card__button--select']} p-3`}
                         alt={`Add ${name} to my selections`}
@@ -60,7 +63,7 @@ export default function PetCard({pet}) {
                             {isAdded ?
                                 <FontAwesomeIcon icon={fasHeart} size="lg" className={styles['card__heart']} /> : <FontAwesomeIcon icon={faHeart}  size="lg"  className={styles['card__heart']} />}
                     </button>
-                    <div className={`p-5 text-left ${styles['card__content']}`}>
+                    <div className={`p-5 pb-2 text-left ${styles['card__content']}`}>
                         <h3 className={styles['card__heading']}>
                             <span className='mr-2'>{name}</span>
                             {gender.toLowerCase() === 'male' && <FontAwesomeIcon icon={faMars} />}

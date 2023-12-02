@@ -10,7 +10,7 @@ import { faPenToSquare, faSquareMinus } from '@fortawesome/free-regular-svg-icon
 // import { authContext } from "../../context/authContext";
 
 import * as petsApi from '../../api/petsApi';
-import { USER_ROLES, PATH } from "../../constants";
+import { PATH } from "../../constants";
 
 import styles from './PetDetails.module.scss';
 

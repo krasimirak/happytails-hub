@@ -5,7 +5,7 @@ import *  as petsApi from '../../api/petsApi';
 
 import PetCard from "../PetCard/PetCard";
 
-export default function PetsList({ userRole }) {
+export default function PetsList() {
     const [pets, setPets] = useState([]);
 
     useEffect(() => {
@@ -18,8 +18,7 @@ export default function PetsList({ userRole }) {
             {pets.map(pet => (
                 <PetCard
                     key={pet.id}
-                    pet={pet}
-                    userRole={userRole} />
+                    pet={pet} />
             ))}
         </ul>
     )

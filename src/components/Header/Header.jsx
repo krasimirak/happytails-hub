@@ -1,14 +1,15 @@
 import { NavLink } from 'react-router-dom';
+
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPaw } from '@fortawesome/free-solid-svg-icons'
 
 import styles from './Header.module.scss';
-import { USER_ROLES, PATH } from '../../constants';
 
+import { PATH } from '../../constants';
 import { useAuth } from '../../context/authContext';
 
 export default function Header() {
-    const { currentUser } = useAuth();
+    const { user, isAdmin } = useAuth();
     const navLinkClass = ({isActive}) => isActive ? styles['active'] : '';
 
     return (
@@ -27,7 +28,7 @@ export default function Header() {
                             <NavLink to={PATH.List} className={navLinkClass}>Open for adoption</NavLink>
                         </li>
 
-                        {!currentUser && (
+                        { !user  && (
                             <>
                                 <li className={styles['menu__item']}>
                                     <NavLink to={PATH.Login} className={navLinkClass}>Login</NavLink>
@@ -37,15 +38,14 @@ export default function Header() {
                                 </li>
                             </>)}
 
-                        {/* TO DO: ADD ADMIN CHECK */}
-                        { currentUser && (
+                        { isAdmin && (
                         <>
                             <li className={styles['menu__item']}>
                                 <NavLink to={PATH.Add} className={navLinkClass}>Add new pet</NavLink>
                             </li>
                         </>) }
 
-                        { currentUser && (
+                        { user && (
                             <>
                                 <li className={styles['menu__item']}>
                                     <NavLink to={PATH.Selections} className={navLinkClass}>My selections</NavLink>

@@ -1,8 +1,9 @@
-import { useState } from 'react'
 import { Routes, Route } from 'react-router-dom';
 
 import { AuthProvider } from './context/authContext';
-import { USER_ROLES, PATH } from './constants';
+
+import { PATH } from './constants';
+
 import Header from './components/Header/Header';
 import Home from './pages/Home';
 import PetsListPage from './pages/PetsListPage';
@@ -18,13 +19,10 @@ import Logout from './pages/Logout';
 
 
 function App() {
-  // eslint-disable-next-line no-unused-vars
-  const [userRole, setUserRole] = useState(USER_ROLES.guest);
-
 
   return (
     <AuthProvider>
-        <Header userRole={userRole} />
+        <Header />
         <Routes>
           <Route path={PATH.Home} element={<Home />} />
           <Route path={PATH.List} element={<PetsListPage />} />
