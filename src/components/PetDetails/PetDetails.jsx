@@ -7,7 +7,7 @@ import { Alert, Button } from 'flowbite-react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPenToSquare, faSquareMinus } from '@fortawesome/free-regular-svg-icons'
 
-// import { authContext } from "../../context/authContext";
+import { useAuth } from "../../context/authContext";
 
 import * as petsApi from '../../api/petsApi';
 import { PATH } from "../../constants";
@@ -17,7 +17,7 @@ import styles from './PetDetails.module.scss';
 export default function PetDetails({id}) {
     const [details, setDetails] = useState({});
     const [error, setError] = useState(false);
-    // const userRole = useContext(authContext);
+    const { user, isAdmin } = useAuth();
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -51,10 +51,9 @@ export default function PetDetails({id}) {
                 <img src={details.image} alt={details.name} />
             </picture>
             <div className={styles['details__content']}>
-                {/* TO DO: useAuth()  */}
-                { true && (
+                { isAdmin && (
                     <div className={styles['details__links']}>
-                        {/* TO DO: Link with state={{ petDetails }}> */}
+                        {/* OPTTO DO: Link with state={{ petDetails }}> */}
                         <Button
                             as={Link}
                             to={PATH.Edit.replace(':id', id)}
