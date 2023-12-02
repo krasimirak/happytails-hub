@@ -11,12 +11,12 @@ import { PATH } from '../../constants';
 import ErrorModal from '../ErrorModal';
 import styles from './PetCard.module.scss';
 
+import * as wishlistApi from '../../api/wishlistApi';
 
-export default function PetCard({ pet }) {
-    // TO DO: ADD check if user has already added this pet to selections
-    const [isAdded, setIsAdded] = useState(false);
+export default function PetCard({ pet, isSelected }) {
+    const [isAdded, setIsAdded] = useState(isSelected);
     const [error, setError] = useState({});
-    const { user } = useAuth();
+    const { isLoggedIn, user } = useAuth();
 
     if (!pet) {
         return (<></>);
@@ -25,7 +25,7 @@ export default function PetCard({ pet }) {
     const { id, name, image, gender, type } = pet;
 
     const onAddToSelectionsClick = () => {
-        if (!user) {
+        if (!isLoggedIn) {
             setError({
                 title: 'Operation not allowed',
                 message: 'Please login or register to use this functionality'
@@ -34,9 +34,16 @@ export default function PetCard({ pet }) {
             return;
         }
 
-        setIsAdded(state => !state);
-
-        // TO DO: ADD to user selections
+        if (isAdded) {
+            wishlistApi.removeFromUserWishlist(user.id, pet.id)
+                .then(() => setIsAdded(false))
+                .catch((err) => console.log(err))
+        }
+        else {
+            wishlistApi.addToUserWishlist(user.id, pet.id)
+                .then(() => setIsAdded(true))
+                .catch((err) => console.log(err))
+        }
     }
 
     const onErrorDismiss = () => {

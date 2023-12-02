@@ -1,4 +1,4 @@
-import { doc, addDoc, getDoc, getDocs, updateDoc, deleteDoc, Timestamp } from "firebase/firestore";
+import { doc, getDoc, updateDoc, arrayUnion, arrayRemove } from "firebase/firestore";
 
 import { db } from './firebase';
 
@@ -8,9 +8,10 @@ import { db } from './firebase';
  * @returns {Array} array of pets added to wishlist
  */
 export const getUserWishlist = async (uid) => {
+    const userWishlistRef = doc(db, "wishlists", uid);
+
     try {
-        const docRef = doc(db, "wishlists", uid);
-        const docSnap = await getDoc(docRef);
+        const docSnap = await getDoc(userWishlistRef);
 
         if (docSnap.exists()) {
             return docSnap.data().pets;
@@ -20,5 +21,31 @@ export const getUserWishlist = async (uid) => {
     }
     catch (error) {
         throw new Error(`An error occured while trying to fetch wishlist for user with ID ${uid}: ${error}`);
+    }
+}
+
+export const addToUserWishlist = async (uid, petId) => {
+    const userWishlistRef = doc(db, "wishlists", uid);
+
+    try {
+        await updateDoc(userWishlistRef, {
+            pets: arrayUnion(petId)
+        });
+    }
+    catch (error) {
+        throw new Error(`An error occured while trying to add pet (${petId}) to wishlist for user with ID ${uid}: ${error}`);
+    }
+}
+
+export const removeFromUserWishlist = async (uid, petId) => {
+    const userWishlistRef = doc(db, "wishlists", uid);
+
+    try {
+        await updateDoc(userWishlistRef, {
+            pets: arrayRemove(petId)
+        });
+    }
+    catch (error) {
+        throw new Error(`An error occured while trying to add remove (${petId}) to wishlist for user with ID ${uid}: ${error}`);
     }
 }
