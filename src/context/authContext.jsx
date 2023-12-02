@@ -33,6 +33,7 @@ export function AuthProvider({ children }) {
 
     const value = {
         user: {
+            id: currentUser?.uid,
             email: currentUser?.email,
             name: currentUser?.displayName
         },

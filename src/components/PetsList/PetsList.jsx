@@ -5,13 +5,23 @@ import *  as petsApi from '../../api/petsApi';
 
 import PetCard from "../PetCard/PetCard";
 
-export default function PetsList() {
+export default function PetsList({ petIds }) {
     const [pets, setPets] = useState([]);
 
     useEffect(() => {
-        petsApi.getAll()
-            .then(result => setPets(result));
-    }, []);
+        if (petIds) {
+            if (petIds.length) {
+                petsApi.getAllById(petIds)
+                    .then(data => setPets(data))
+                    .catch(err => console.log(err));
+            }
+        }
+        else {
+            petsApi.getAll()
+                .then(data => setPets(data))
+                .catch(err => console.log(err));
+        }
+    }, [petIds]);
 
     return (
         <ul className={`mx-auto ${styles['cards']}`}>

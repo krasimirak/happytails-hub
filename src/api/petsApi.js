@@ -1,4 +1,4 @@
-import { collection, doc, addDoc, getDoc, getDocs, updateDoc, deleteDoc, Timestamp } from "firebase/firestore";
+import { collection, doc, addDoc, getDoc, getDocs, updateDoc, deleteDoc, Timestamp, query, where, documentId } from "firebase/firestore";
 
 import { db } from './firebase';
 
@@ -25,6 +25,31 @@ export const getAll = async () => {
     }
     catch (error) {
         throw new Error(`An error occured while trying to fetch all pets data: ${error}`);
+    }
+}
+
+/**
+ *
+ * @param {Array} petsIdArray
+ * @returns {Array} array with pets data
+ */
+export const getAllById = async (petsIdArray) => {
+    const result = [];
+
+    try {
+        const q = query(PETS_COLLECTION, where(documentId(), 'in', petsIdArray));
+        const querySnapshot = await getDocs(q);
+        querySnapshot.forEach(doc => {
+            result.push({
+                ...doc.data(),
+                id: doc.id
+            });
+        });
+
+        return result;
+    }
+    catch (error) {
+        throw new Error(`An error occured while trying to fetch filtered pets data: ${error}`);
     }
 }
 
