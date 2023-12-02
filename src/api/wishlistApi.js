@@ -13,7 +13,6 @@ export const getUserWishlist = async (uid) => {
         const docSnap = await getDoc(docRef);
 
         if (docSnap.exists()) {
-            console.log(docSnap.data().pets);
             return docSnap.data().pets;
         } else {
             throw new Error(`There is no record of a wishlist for user with ID: ${uid}`);
