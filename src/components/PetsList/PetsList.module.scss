@@ -16,5 +16,9 @@
 @media screen and (min-width: 1024px) {
     .cards {
         grid-template-columns: repeat(3, 1fr);
+
+        &--four-columns {
+            grid-template-columns: repeat(4, 1fr);
+        }
     }
 }
