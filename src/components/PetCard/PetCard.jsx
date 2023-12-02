@@ -71,6 +71,7 @@ export default function PetCard({ pet }) {
                         </h3>
                         <span className='block mb-6'>{type}</span>
 
+                        {/* OPTTO DO: ADD state for pet details  */}
                         <Link
                             to={PATH.Details.replace(':id', id)}
                             className={styles['card__button--details']}

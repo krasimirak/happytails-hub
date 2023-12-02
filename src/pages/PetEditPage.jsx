@@ -14,7 +14,7 @@ export default function PetDetailsPage() {
     const { id } = useParams();
     const [ petData, setPetData ] = useState({});
     const [ error, setError ] = useState(false);
-    // TO DO: ADD useLocation to get pet details
+    // OPTTO DO: ADD useLocation to get pet details
 
     // TO REMOVE:
     useEffect(() => {
