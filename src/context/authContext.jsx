@@ -32,12 +32,13 @@ export function AuthProvider({ children }) {
     }, [])
 
     const value = {
+        isLoggedIn: !!currentUser?.uid,
+        isAdmin: currentUser?.role === USER_ROLES.admin,
         user: {
             id: currentUser?.uid,
             email: currentUser?.email,
             name: currentUser?.displayName
         },
-        isAdmin: currentUser?.role === USER_ROLES.admin,
         register: authApi.register,
         login: authApi.login,
         logout: authApi.logout

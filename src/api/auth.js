@@ -5,8 +5,18 @@ import app, { db } from './firebase';
 
 export const auth = getAuth(app);
 
-export const register = (email, password) => {
-    return createUserWithEmailAndPassword(auth, email, password);
+export const register = async (email, password) => {
+    try {
+        const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+
+        // Create an empty wishlist document
+        const uid = userCredential.user.uid;
+        const userWishlistRef = doc(db, "wishlists", uid);
+        await setDoc(userWishlistRef, { pets: [] });
+    }
+    catch (error) {
+        throw new Error(`An error occured while trying to create user: ${error}`);
+    }
 }
 
 export const login = (email, password) => {
