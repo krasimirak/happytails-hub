@@ -16,6 +16,10 @@ import PetEditPage from './pages/PetEditPage';
 import AddNew from './pages/AddNew';
 import PageNotFound from './pages/PageNotFound';
 import Logout from './pages/Logout';
+import Footer from './components/Footer/Footer';
+import AuthGuard from './components/guards/AuthGuard';
+import GuestGuard from './components/guards/GuestGuard';
+import AdminGuard from './components/guards/AdminGuard';
 
 
 function App() {
@@ -27,15 +31,27 @@ function App() {
           <Route path={PATH.Home} element={<Home />} />
           <Route path={PATH.List} element={<PetsListPage />} />
           <Route path={PATH.Details} element={<PetDetailsPage />} />
-          <Route path={PATH.Edit} element={<PetEditPage />} />
-          <Route path={PATH.Selections} element={<Selections />} />
-          <Route path={PATH.Account} element={<Account />} />
-          <Route path={PATH.Login} element={<Login />} />
-          <Route path={PATH.Register} element={<Register />} />
-          <Route path={PATH.Logout} element={<Logout />} />
-          <Route path={PATH.Add} element={<AddNew />} />
           <Route path={PATH.NotFound} element={<PageNotFound />} />
+
+          <Route element={<GuestGuard />}>
+            <Route path={PATH.Login} element={<Login />} />
+            <Route path={PATH.Register} element={<Register />} />
+          </Route>
+
+          <Route element={<AuthGuard />}>
+            <Route path={PATH.Selections} element={<Selections />} />
+            <Route path={PATH.Account} element={<Account />} />
+            <Route path={PATH.Logout} element={<Logout />} />
+          </Route>
+
+          <Route element={<AdminGuard />}>
+            <Route path={PATH.Add} element={<AddNew />} />
+            <Route path={PATH.Edit} element={<PetEditPage />} />
+          </Route>
+
         </Routes>
+
+        <Footer />
     </AuthProvider>
   )
 }
