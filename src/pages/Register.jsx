@@ -59,7 +59,7 @@ export default function Register() {
 
     return (
         <main className="container px-4 mx-auto">
-            <h1 className="text-4xl font-extrabold my-8">Register</h1>
+            <h1 className="text-4xl my-8">Register</h1>
 
             {error && (
                 <Alert color="failure" icon={HiInformationCircle}>

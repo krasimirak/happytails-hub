@@ -16,14 +16,13 @@
 
         &__links {
             display: flex;
-            justify-content: flex-end;
+            justify-content: flex-start;
             gap: 16px;
+            margin: 16px 0;
         }
 
         &__link {
             background-color: $primary-color;
-
-            // background-color: $accent-color;
             border-radius: 8px;
             padding: .25rem .75rem;
             letter-spacing: 1px;
