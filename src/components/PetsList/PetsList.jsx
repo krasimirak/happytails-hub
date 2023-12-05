@@ -10,14 +10,13 @@ import *  as petsApi from '../../api/petsApi';
 import { PATH } from "../../constants";
 
 import PetCard from "../PetCard/PetCard";
+import PetCardSkeleton from "../PetCard/PetCardSkeleton";
 
 export default function PetsList({ isSelections }) {
     const [selections, setSelections] = useState([]);
     const [pets, setPets] = useState([]);
-
+    const [isLoading, setIsLoading] = useState(false);
     const { user } = useAuth();
-
-    // OPTTO DO: LOADER
 
     useEffect(() => {
         if (user.id) {
@@ -28,11 +27,14 @@ export default function PetsList({ isSelections }) {
     }, [user.id]);
 
     useEffect(() => {
+        setIsLoading(true);
+
         if (isSelections) {
             if (selections.length) {
                 petsApi.getAllById(selections)
                     .then(data => setPets(data))
-                    .catch(err => console.log(err));
+                    .catch(err => console.log(err))
+                    .finally(() => setIsLoading(false));
             }
             else {
                 // TO DO: No selections view
@@ -41,14 +43,25 @@ export default function PetsList({ isSelections }) {
         else {
             petsApi.getAll()
                 .then(data => setPets(data))
-                .catch(err => console.log(err));
+                .catch(err => console.log(err))
+                .finally(() => setIsLoading(false));
         }
     }, [isSelections, selections]);
 
+    if (isLoading) {
+        return (
+            <ul className={`mx-auto ${styles['cards']} ${isSelections ? styles['cards--four-columns'] : ''}`}>
+                <PetCardSkeleton />
+                <PetCardSkeleton />
+                <PetCardSkeleton />
+                {isSelections && <PetCardSkeleton />}
+            </ul>
+        )
+    }
 
     if (pets.length) {
         return (
-            <ul className={`mx-auto ${styles['cards']} ${isSelections && styles['cards--four-columns']}`}>
+            <ul className={`mx-auto ${styles['cards']} ${isSelections ? styles['cards--four-columns'] : ''}`}>
                 {pets.map(pet => (
                     <PetCard
                         key={pet.id}
