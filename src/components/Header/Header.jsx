@@ -1,5 +1,7 @@
 import { NavLink } from 'react-router-dom';
 
+import { Navbar } from 'flowbite-react';
+
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPaw } from '@fortawesome/free-solid-svg-icons'
 
@@ -13,53 +15,32 @@ export default function Header() {
     const navLinkClass = ({isActive}) => isActive ? styles['active'] : '';
 
     return (
-        <header className={styles['header']}>
-            <div className={`container px-4 mx-auto py-6 bg-white ${styles['header__container']}`}>
-                <div>
-                    <NavLink to={PATH.Home}>
-                        <FontAwesomeIcon icon={faPaw} style={{color: '#3AA1A6'}} size="3x" />
-                        <strong className={styles['header__title']}>HappyTails Hub</strong>
-                    </NavLink>
-                </div>
+        <Navbar fluid rounded>
+            <Navbar.Brand as={NavLink} to={PATH.Home}>
+                <FontAwesomeIcon icon={faPaw} style={{color: '#3AA1A6'}} size="3x" />
+                <strong className={styles['header__title']}>HappyTails Hub</strong>
+            </Navbar.Brand>
 
-                <nav className={styles['menu']}>
-                    <ul className={styles['menu__list']}>
-                        <li className={styles['menu__item']}>
-                            <NavLink to={PATH.List} className={navLinkClass}>Open for adoption</NavLink>
-                        </li>
 
-                        { !isLoggedIn  && (
-                            <>
-                                <li className={styles['menu__item']}>
-                                    <NavLink to={PATH.Login} className={navLinkClass}>Login</NavLink>
-                                </li>
-                                <li className={styles['menu__item']}>
-                                    <NavLink to={PATH.Register} className={navLinkClass}>Register</NavLink>
-                                </li>
-                            </>)}
+            <Navbar.Toggle />
+            <Navbar.Collapse>
+                <Navbar.Link as={NavLink} to={PATH.List} className={navLinkClass}>Open for adoption</Navbar.Link>
 
-                        { isLoggedIn && isAdmin && (
-                        <>
-                            <li className={styles['menu__item']}>
-                                <NavLink to={PATH.Add} className={navLinkClass}>Add new pet</NavLink>
-                            </li>
-                        </>) }
+                { !isLoggedIn  && (<>
+                    <Navbar.Link as={NavLink} to={PATH.Login} className={navLinkClass}>Login </Navbar.Link>
+                    <Navbar.Link as={NavLink} to={PATH.Register} className={navLinkClass}>Register</Navbar.Link>
+                </>)}
 
-                        { isLoggedIn && (
-                            <>
-                                <li className={styles['menu__item']}>
-                                    <NavLink to={PATH.Selections} className={navLinkClass}>My selections</NavLink>
-                                </li>
-                                <li className={styles['menu__item']}>
-                                    <NavLink to={PATH.Account} className={navLinkClass}>My account</NavLink>
-                                </li>
-                                <li className={styles['menu__item']}>
-                                    <NavLink to={PATH.Logout} className={navLinkClass}>Logout</NavLink>
-                                </li>
-                            </>)}
-                    </ul>
-                </nav>
-            </div>
-        </header>
-    )
+                { isLoggedIn && isAdmin && (
+                    <Navbar.Link as={NavLink} to={PATH.Add} className={navLinkClass}>Add new pet</Navbar.Link>
+                )}
+
+                { isLoggedIn && (<>
+                    <Navbar.Link as={NavLink} to={PATH.Selections} className={navLinkClass}>My selections</Navbar.Link>
+                    <Navbar.Link as={NavLink} to={PATH.Account} className={navLinkClass}>My account</Navbar.Link>
+                    <Navbar.Link as={NavLink} to={PATH.Logout} className={navLinkClass}>Logout</Navbar.Link>
+                </>)}
+            </Navbar.Collapse>
+        </Navbar>
+    );
 }
