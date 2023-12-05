@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "flowbite-react";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faArrowRight } from '@fortawesome/free-solid-svg-icons'
 
 import styles from './PetsList.module.scss';
 
@@ -37,7 +39,7 @@ export default function PetsList({ isSelections }) {
                     .finally(() => setIsLoading(false));
             }
             else {
-                // TO DO: No selections view
+                setIsLoading(false);
             }
         }
         else {
@@ -75,7 +77,11 @@ export default function PetsList({ isSelections }) {
         return (
             <>
                 <h2>No selections found.</h2>
-                <Button as={Link} to={PATH.PetsList}>Go back to see all pets</Button>
+                <p className="mb-6">You haven&apos;t added pets to your selection. Please review our listings.</p>
+                <Button as={Link} to={PATH.List} className="inline-block" color="light">
+                    <span className="mr-2">Pets list</span>
+                    <FontAwesomeIcon icon={faArrowRight} />
+                </Button>
             </>
         )
     }
