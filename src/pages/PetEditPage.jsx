@@ -1,28 +1,33 @@
 import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useLocation } from "react-router-dom";
 import { Link } from "react-router-dom";
 
 import { HiInformationCircle } from 'react-icons/hi';
 import { Alert, Button } from 'flowbite-react';
 
 import { PATH } from "../constants";
+
 import * as petsApi from '../api/petsApi';
+
 import PetForm from "../components/Forms/PetForm";
 
 
-export default function PetDetailsPage() {
+export default function PetEditPage() {
     const { id } = useParams();
+    const { state: data } = useLocation();
     const [ petData, setPetData ] = useState({});
     const [ error, setError ] = useState(false);
-    // OPTTO DO: ADD useLocation to get pet details
 
-    // TO REMOVE:
     useEffect(() => {
-        petsApi.getOne(id)
-        .then(setPetData)
-        .catch(() => setError(true))
-    }, [id]);
-
+        if (data) {
+            setPetData(data);
+        }
+        else {
+            petsApi.getOne(id)
+            .then(setPetData)
+            .catch(() => setError(true))
+        }
+    }, [data, id]);
 
     return (
         <main className="container px-4 mx-auto">
@@ -36,7 +41,7 @@ export default function PetDetailsPage() {
             { !error && (
                 <>
                     <h1>Edit listing</h1>
-                    <PetForm pet={ {...petData, id} } />
+                    {Object.keys(petData).length && <PetForm pet={ {...petData, id} } />}
                 </>
             )  }
         </main>
