@@ -1,4 +1,4 @@
-import { useEffect, useState, useContext } from "react";
+import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
 import { HiInformationCircle } from 'react-icons/hi';
@@ -7,17 +7,18 @@ import { Alert, Button } from 'flowbite-react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPenToSquare, faSquareMinus } from '@fortawesome/free-regular-svg-icons'
 
+import styles from './PetDetails.module.scss';
+
+import { PATH } from "../../constants";
+
 import { useAuth } from "../../context/authContext";
 
 import * as petsApi from '../../api/petsApi';
-import { PATH } from "../../constants";
-
-import styles from './PetDetails.module.scss';
 
 export default function PetDetails({id}) {
     const [details, setDetails] = useState({});
     const [error, setError] = useState(false);
-    const { user, isAdmin } = useAuth();
+    const { isAdmin } = useAuth();
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -49,18 +50,17 @@ export default function PetDetails({id}) {
         <div className={styles['details']}>
             <picture className={styles['details__media']}>
                 <img src={details.image} alt={details.name} />
-            </picture>
-            <div className={styles['details__content']}>
+
                 { isAdmin && (
                     <div className={styles['details__links']}>
-                        {/* OPTTO DO: Link with state={{ petDetails }}> */}
                         <Button
                             as={Link}
                             to={PATH.Edit.replace(':id', id)}
                             className={styles['details__link']}
-                            size="lg">
-                                <FontAwesomeIcon icon={faPenToSquare} />
-                                <span className="ml-3 text-lg">Edit</span>
+                            size="lg"
+                            state={details}>
+                            <FontAwesomeIcon icon={faPenToSquare} />
+                            <span className="ml-3 text-lg">Edit</span>
                         </Button>
                         <Button
                             onClick={onDeleteButtonClick}
@@ -71,16 +71,20 @@ export default function PetDetails({id}) {
                         </Button>
                     </div>
                 )}
-
+            </picture>
+            <div className={styles['details__content']}>
                 <h1>
                     <span className='mr-2'>{details.name}</span>
                 </h1>
-                <p>{details.description}</p>
+                <p className="mb-6">{details.description}</p>
 
                 <p>Size: {details.size}</p>
+                <p>{details.age}</p>
+                <p>{details.gender}</p>
                 <p>Good with children: {details['good_with_children'] ? 'Yes' : 'No'}</p>
                 <p>Good with cats: {details['good_with_cats'] ? 'Yes' : 'No'}</p>
                 <p>Good with dogs: {details['good_with_dogs'] ? 'Yes' : 'No'}</p>
+                <p>House trained: {details['good_with_dogs'] ? 'Yes' : 'No'}</p>
             </div>
         </div>
     )
