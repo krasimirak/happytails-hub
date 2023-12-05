@@ -18,7 +18,7 @@ import CheckboxField from "./CheckboxField";
  *
  * @param {Object} props - React component properties
  * @param {Object} props.pet - initial pet data - used if for editing pet data
- * @returns {JSX.Element} React component
+ * @returns {ReactNode} React component
  */
 
 export default function PetForm({pet}) {

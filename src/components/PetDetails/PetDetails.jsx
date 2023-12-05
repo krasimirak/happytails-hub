@@ -15,9 +15,12 @@ import { useAuth } from "../../context/authContext";
 
 import * as petsApi from '../../api/petsApi';
 
+import ConfirmationModal from "../modals/ConfirmationModal";
+
 export default function PetDetails({id}) {
     const [details, setDetails] = useState({});
     const [error, setError] = useState(false);
+    const [deleteModalOpen, setDeleteModalOpen] = useState(false);
     const { isAdmin } = useAuth();
     const navigate = useNavigate();
 
@@ -27,14 +30,22 @@ export default function PetDetails({id}) {
         .catch(() => setError(true));
     }, [id]);
 
-    const onDeleteButtonClick = () => {
-        // TO DO:
-        // 1. Confirmation modal
-        // 2. Error message handle (from catch)
+    const onConfirmDelete = () => {
         petsApi.remove(id)
-        .then(() => { navigate(PATH.List) })
-        .catch(() => setError(true));
+            .then(() => {
+                navigate(PATH.List);
+            })
+            .catch(() => setError(true));
     }
+
+    const onCancelDelete = () => {
+        setDeleteModalOpen(false);
+    }
+
+    const onDeleteButtonClick = () => {
+        setDeleteModalOpen(true);
+    }
+
 
     if (error) {
         return (
@@ -86,6 +97,15 @@ export default function PetDetails({id}) {
                 <p>Good with dogs: {details['good_with_dogs'] ? 'Yes' : 'No'}</p>
                 <p>House trained: {details['good_with_dogs'] ? 'Yes' : 'No'}</p>
             </div>
+
+            {deleteModalOpen && (
+                    <ConfirmationModal
+                        title="Are you sure you want to delete this listing?"
+                        closeHandler={onCancelDelete}
+                        confirmHandler={onConfirmDelete}>
+                        <p>This action is irreversible! Please use carefully.</p>
+                    </ConfirmationModal>
+                )}
         </div>
     )
 }
