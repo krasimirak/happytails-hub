@@ -24,7 +24,7 @@ Based on ReactJS course project assignment from SoftUni.
 ### Prerequisites
 
 Please note to be able to use this project with a local setup a .env.local file in the root directory of this repository is needed.
-This file holds configuration needed to access to the database and server.
+This file holds configuration to be able to access the database and server.
 
 ### Installation
 
@@ -51,4 +51,9 @@ Admin users can manage all listings - add, edit and delete them.
 
 ## Acknowledgments
 
+Project idea and structure - https://www.petfinder.com/
+
 Application theme design inspo - https://chomp.webflow.io/
+
+Images from - https://www.pexels.com/
+
