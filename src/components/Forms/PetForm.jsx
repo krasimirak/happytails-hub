@@ -1,17 +1,19 @@
-import { useState, useMemo, useRef, useEffect } from "react";
+import { useState, useMemo, useRef } from "react";
 import { useNavigate } from "react-router-dom";
+import { Alert, Button } from "flowbite-react";
+import { HiInformationCircle } from "react-icons/hi";
 
-import { PET_DETAILS } from "../../constants";
+import styles from './PetForm.module.scss';
+
+import { PATH, PET_DETAILS } from "../../constants";
+
+import * as petsApi from '../../api/petsApi';
 
 import TextField from "./TextField";
 import SelectField from "./SelectField";
 import CheckboxField from "./CheckboxField";
-import { Alert, Button } from "flowbite-react";
-import { HiInformationCircle } from "react-icons/hi";
 
-import { PATH } from "../../constants";
-import * as petsApi from '../../api/petsApi';
-import styles from './PetForm.module.scss';
+
 /**
  *
  * @param {Object} props - React component properties
@@ -27,12 +29,7 @@ export default function PetForm({pet}) {
     const [data, setData] = useState(pet || stateFromTemplate);
     const [error, setError] = useState(false);
     const errorRef = useRef(null);
-
     const navigate = useNavigate();
-
-    useEffect(() => {
-        if (pet) setData(pet);
-    }, [pet]);
 
     const onFieldChange = ({target}) => {
         const value = target.type === 'checkbox' ? target.checked : target.value;
@@ -120,6 +117,4 @@ export default function PetForm({pet}) {
             </form>
         </>
     )
-
 }
-
