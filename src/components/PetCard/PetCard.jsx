@@ -6,12 +6,14 @@ import { faMars, faVenus, faHeart as fasHeart } from '@fortawesome/free-solid-sv
 import { faHeart } from '@fortawesome/free-regular-svg-icons'
 import { Button } from 'flowbite-react';
 
-import { useAuth } from '../../context/authContext';
-import { PATH } from '../../constants';
-import ErrorModal from '../ErrorModal';
 import styles from './PetCard.module.scss';
 
+import { useAuth } from '../../context/authContext';
+import { PATH } from '../../constants';
+
 import * as wishlistApi from '../../api/wishlistApi';
+
+import ErrorModal from '../ErrorModal';
 
 export default function PetCard({ pet, isSelected }) {
     const [isAdded, setIsAdded] = useState(isSelected);
@@ -78,7 +80,6 @@ export default function PetCard({ pet, isSelected }) {
                         </h3>
                         <span className='block mb-6'>{type}</span>
 
-                        {/* OPTTO DO: ADD state for pet details  */}
                         <Link
                             to={PATH.Details.replace(':id', id)}
                             className={styles['card__button--details']}
