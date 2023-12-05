@@ -1,29 +1,30 @@
-import { Button, Modal } from 'flowbite-react';
 import { useState } from 'react';
+
+import { Modal } from 'flowbite-react';
 
 /**
  * This component renders a greeting to the user.
  *
  * @param {string} title - modal title to be displayed
  * @param {function} closeHandler - callback function to resolve
- * @returns {ReactNode} A React element that renders a greeting to the user.
+ * @returns {ReactNode}
  */
 
-export default function ErrorModal(props) {
+export default function ErrorModal({title, children, closeHandler}) {
   const [openModal, setOpenModal] = useState(true);
 
   const onModalClose = () => {
     setOpenModal(false);
-    props.closeHandler();
+    closeHandler();
   }
 
   return (
     <>
       <Modal show={openModal} onClose={onModalClose}>
-        <Modal.Header>{props.title}</Modal.Header>
+        <Modal.Header>{title}</Modal.Header>
         <Modal.Body>
           <div className="space-y-6">
-            {props.children}
+            {children}
           </div>
         </Modal.Body>
       </Modal>

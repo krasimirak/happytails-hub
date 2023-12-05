@@ -13,7 +13,7 @@ import { PATH } from '../../constants';
 
 import * as wishlistApi from '../../api/wishlistApi';
 
-import ErrorModal from '../ErrorModal';
+import ErrorModal from '../modals/ErrorModal';
 
 export default function PetCard({ pet, isSelected }) {
     const [isAdded, setIsAdded] = useState(isSelected);
