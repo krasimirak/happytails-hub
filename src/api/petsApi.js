@@ -2,6 +2,8 @@ import { collection, doc, addDoc, getDoc, getDocs, updateDoc, deleteDoc, Timesta
 
 import { db } from './firebase';
 
+import { filtersToFirestoreWhere } from "../utils/filters";
+
 const PETS_COLLECTION = collection(db, "animals");
 
 /**
@@ -38,6 +40,34 @@ export const getAllById = async (petsIdArray) => {
 
     try {
         const q = query(PETS_COLLECTION, where(documentId(), 'in', petsIdArray));
+        const querySnapshot = await getDocs(q);
+        querySnapshot.forEach(doc => {
+            result.push({
+                ...doc.data(),
+                id: doc.id
+            });
+        });
+
+        return result;
+    }
+    catch (error) {
+        throw new Error(`An error occured while trying to fetch filtered pets data: ${error}`);
+    }
+}
+
+/**
+ *
+ * @param {Array} filters
+ * @returns {Array} array with pets data
+ */
+export const getAllFiltered = async (filters) => {
+    const result = [];
+
+    const filtersFirestore = filtersToFirestoreWhere(filters);
+    console.log(filtersFirestore);
+
+    try {
+        const q = query(PETS_COLLECTION, ...filtersFirestore);
         const querySnapshot = await getDocs(q);
         querySnapshot.forEach(doc => {
             result.push({

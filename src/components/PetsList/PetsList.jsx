@@ -14,7 +14,7 @@ import { PATH } from "../../constants";
 import PetCard from "../PetCard/PetCard";
 import PetCardSkeleton from "../PetCard/PetCardSkeleton";
 
-export default function PetsList({ isSelections }) {
+export default function PetsList({ isSelections, results }) {
     const [selections, setSelections] = useState([]);
     const [pets, setPets] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
@@ -27,6 +27,10 @@ export default function PetsList({ isSelections }) {
                 .catch(err => console.log(err));
         }
     }, [user.id]);
+
+    useEffect(() => {
+        setPets(results);
+    }, [results]);
 
     useEffect(() => {
         setIsLoading(true);
@@ -43,10 +47,11 @@ export default function PetsList({ isSelections }) {
             }
         }
         else {
-            petsApi.getAll()
-                .then(data => setPets(data))
-                .catch(err => console.log(err))
-                .finally(() => setIsLoading(false));
+            setIsLoading(false);
+            // petsApi.getAll()
+            //     .then(data => setPets(data))
+            //     .catch(err => console.log(err))
+            //     .finally(() => setIsLoading(false));
         }
     }, [isSelections, selections]);
 
