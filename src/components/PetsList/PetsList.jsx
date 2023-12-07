@@ -52,7 +52,7 @@ export default function PetsList({ isSelections }) {
 
     if (isLoading) {
         return (
-            <ul className={`mx-auto ${styles['cards']} ${isSelections ? styles['cards--four-columns'] : ''}`}>
+            <ul className={`mx-auto ${styles['cards']} ${isSelections ? styles['cards--four-columns'] : styles['cards--four-columns']}`}>
                 <PetCardSkeleton />
                 <PetCardSkeleton />
                 <PetCardSkeleton />
@@ -63,7 +63,7 @@ export default function PetsList({ isSelections }) {
 
     if (pets.length) {
         return (
-            <ul className={`mx-auto ${styles['cards']} ${isSelections ? styles['cards--four-columns'] : ''}`}>
+            <ul className={`mx-auto ${styles['cards']} ${isSelections ? styles['cards--four-columns'] : styles['cards--four-columns']}`}>
                 {pets.map(pet => (
                     <PetCard
                         key={pet.id}

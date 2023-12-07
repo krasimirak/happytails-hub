@@ -94,7 +94,7 @@ export default function PetDetails({id}) {
                     {details.size && <span className={styles['details__label']}>{details.size}</span>}
                 </div>
 
-                <h2>About</h2>
+                {/* <h2>About</h2> */}
                 <h3 className={styles['details__title--small']}>House-trained</h3>
                 <p>{details['house_trained'] ? 'Yes' : 'No'}</p>
 

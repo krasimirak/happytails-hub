@@ -4,16 +4,18 @@ export default function PetsListPage() {
     return (
         // bg-light-blue
         <main className="bg-white pt-8 pb-14">
-            <div className="container px-4 mx-auto flex flex-wrap">
+            <div className="container px-4 mx-auto">
                 <h1 className="basis-full mt-6 mb-14">Open for adoption</h1>
 
-                <aside className="basis-full lg:basis-1/4">
+                <PetsList />
+
+{/* TO DO: ADD FILTERS */}
+                {/* <aside className="basis-full lg:basis-1/4">
                     <h2>Filters</h2>
-                    {/* Filters go here */}
                 </aside>
                 <section className="basis-full lg:basis-3/4">
                     <PetsList />
-                </section>
+                </section> */}
 
                 <div>
                     {/* Pagination goes here */}
