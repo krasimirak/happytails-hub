@@ -87,15 +87,23 @@ export default function PetDetails({id}) {
                 <h1>
                     <span className='mr-2'>{details.name}</span>
                 </h1>
-                <p className="mb-6">{details.description}</p>
 
-                <p>Size: {details.size}</p>
-                <p>{details.age}</p>
-                <p>{details.gender}</p>
+                <div className={styles['details__labels']}>
+                    {details.gender && <span className={styles['details__label']}>{details.gender}</span>}
+                    {details.age && <span className={styles['details__label']}>{details.age}</span>}
+                    {details.size && <span className={styles['details__label']}>{details.size}</span>}
+                </div>
+
+                <h2>About</h2>
+                <h3 className={styles['details__title--small']}>House-trained</h3>
+                <p>{details['house_trained'] ? 'Yes' : 'No'}</p>
+
+                <h3 className={`${styles['details__title--small']} mt-10`}>More info</h3>
+                <p className="mb-5">{details.description}</p>
+
                 <p>Good with children: {details['good_with_children'] ? 'Yes' : 'No'}</p>
                 <p>Good with cats: {details['good_with_cats'] ? 'Yes' : 'No'}</p>
                 <p>Good with dogs: {details['good_with_dogs'] ? 'Yes' : 'No'}</p>
-                <p>House trained: {details['good_with_dogs'] ? 'Yes' : 'No'}</p>
             </div>
 
             {deleteModalOpen && (
