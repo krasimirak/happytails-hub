@@ -59,12 +59,7 @@ export default function PetCard({ pet, isSelected }) {
                     <div className={styles['card__image']} style={ { backgroundImage: `url(${image})` } }>
 
                     </div>
-                    {/* <picture className={styles['card__picture']}>
-                        <img
-                            className={styles['card__image']}
-                            alt={name}
-                            src={image} />
-                    </picture> */}
+
                     <button
                         className={`${styles['card__button--select']} p-3`}
                         alt={`Add ${name} to my selections`}
@@ -78,7 +73,6 @@ export default function PetCard({ pet, isSelected }) {
                             {gender.toLowerCase() === 'male' && <FontAwesomeIcon icon={faMars} />}
                             {gender.toLowerCase() === 'female' && <FontAwesomeIcon icon={faVenus} />}
                         </h3>
-                        <span className='block mb-6'>{type}</span>
 
                         <Link
                             to={PATH.Details.replace(':id', id)}

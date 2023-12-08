@@ -1,6 +1,11 @@
 @import "../../styles/variables";
 
 .details {
+    &__media {
+        display: block;
+        margin-bottom: 30px;
+    }
+
     &__links {
         display: flex;
         justify-content: flex-start;

@@ -56,7 +56,9 @@ export default function PetsList({ isSelections }) {
                 <PetCardSkeleton />
                 <PetCardSkeleton />
                 <PetCardSkeleton />
-                {isSelections && <PetCardSkeleton />}
+                <PetCardSkeleton />
+
+                {/* {isSelections && <PetCardSkeleton />} */}
             </ul>
         )
     }
